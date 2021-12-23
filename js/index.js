@@ -155,8 +155,59 @@ const playerSelection = (btn) => {
 const logout = () => {
   app.innerHTML = formComponent;
   const formLogin = document.querySelector("#form");
+  const email = document.querySelector("#email");
+  const password = document.querySelector("#password");
 
   formLogin.addEventListener("submit", login);
+  email.addEventListener("blur", validateEmail);
+  password.addEventListener("blur", validatePassword);
+};
+
+const isValidEmail = (emailValue) => {
+  const email = document.querySelector("#email");
+  const hindText = document.querySelector("#hind-email");
+
+  if (!emailValue || (!emailRegex.test(email.value))) {
+    const message = !emailValue ? "Email is empty" : "Email is invalid"
+    email.classList.add("form__error");
+    email.insertAdjacentHTML(
+      "afterend",
+      `<div id="hind-email" class="form__hint">${message}</div>`
+    );
+  } else {
+    email.classList.remove("form__error");
+  }
+
+  if (hindText) {
+    hindText.remove();
+  }
+};
+
+const isValidPassword = (passwordValue) => {
+  const password = document.querySelector("#password");
+  const hindText = document.querySelector("#hind-text");
+
+  if (!password.value) {
+    password.classList.add("form__error");
+    password.insertAdjacentHTML(
+      "afterend",
+      '<div id="hind-text" class="form__hint">Password is empty</div>'
+    );
+  } else {
+    password.classList.remove("form__error");
+  }
+
+  if (hindText) {
+    hindText.remove();
+  }
+};
+
+const validateEmail = (e) => {
+  isValidEmail(e.target.value);
+};
+
+const validatePassword = (e) => {
+  isValidPassword(e.target.value);
 };
 
 const login = (e) => {
@@ -165,20 +216,8 @@ const login = (e) => {
   const email = document.querySelector("#email");
   const password = document.querySelector("#password");
 
-  if (!email.value) {
-    console.log("email is empty");
-    return;
-  }
-
-  if (!emailRegex.test(email.value)) {
-    console.log("email is invalid");
-    return;
-  }
-
-  if (!password.value) {
-    console.log("password is empty");
-    return;
-  }
+  isValidEmail(email.value);
+  isValidPassword(password.value);
 
   if (email.value === emailDefault && password.value === passwordDefault) {
     app.innerHTML = gameComponent;
@@ -197,5 +236,9 @@ const login = (e) => {
 app.innerHTML = formComponent;
 
 const formLogin = document.querySelector("#form");
+const email = document.querySelector("#email");
+const password = document.querySelector("#password");
 
 formLogin.addEventListener("submit", login);
+email.addEventListener("blur", validateEmail);
+password.addEventListener("blur", validatePassword);
