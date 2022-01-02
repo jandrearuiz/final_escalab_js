@@ -46,6 +46,8 @@ const startGame = () => {
   const prSelection = document.querySelector("#player-selection");
   const cpSelection = document.querySelector("#computer-selection");
   const startContent = document.querySelector("#start");
+  const textResult = document.querySelector("#result-title");
+
 
   score = 0;
   game = 0;
@@ -53,6 +55,7 @@ const startGame = () => {
   initialScore.innerText = "";
   prSelection.innerHTML = "";
   cpSelection.innerHTML = "";
+  textResult.innerText= "";
 
   btnStart.remove();
   startContent.remove();
