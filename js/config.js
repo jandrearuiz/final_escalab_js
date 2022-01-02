@@ -1,6 +1,6 @@
 export const emailRegex = /[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/;
 export const emailDefault = "luigi@gmail.com";
-export const passwordDefault = "12";
+export const passwordDefault = "gato123";
 export let winScore = 100;
 export let loseScore = -30;
 export const gameOptions = {
